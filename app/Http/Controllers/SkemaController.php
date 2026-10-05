@@ -19,7 +19,7 @@ class SkemaController extends Controller
 
     public function create(): View
     {
-        return view('skema.form', ['skema' => new Skema()]);
+        return view('skema.create', ['skema' => new Skema()]);
     }
 
     public function store(SkemaRequest $request): RedirectResponse
@@ -31,7 +31,7 @@ class SkemaController extends Controller
 
     public function edit(Skema $skema): View
     {
-        return view('skema.form', compact('skema'));
+        return view('skema.edit', compact('skema'));
     }
 
     public function update(SkemaRequest $request, Skema $skema): RedirectResponse

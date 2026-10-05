@@ -34,7 +34,7 @@ class PesertaController extends Controller
 
     public function create(): View
     {
-        return view('peserta.form', [
+        return view('peserta.create', [
             'peserta' => new Peserta(),
             'skemaList' => Skema::orderBy('nama_skema')->get(),
         ]);
@@ -60,7 +60,7 @@ class PesertaController extends Controller
 
     public function edit(Peserta $peserta): View
     {
-        return view('peserta.form', [
+        return view('peserta.edit', [
             'peserta' => $peserta,
             'skemaList' => Skema::orderBy('nama_skema')->get(),
         ]);

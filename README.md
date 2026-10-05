@@ -8,7 +8,7 @@ Teknologi: Laravel 12, PHP 8.2+, MySQL, Blade, Bootstrap 5.3.3 (CDN jsDelivr, li
 3. `composer install`
 4. `copy .env.example .env`
 5. `php artisan key:generate`
-6. Buat database `db_sertifikasi` (atau import `database/db_sertifikasi.sql`).
+6. Buat database `sertifikasi_usk2.0` (atau import `database/sertifikasi_usk2.0.sql`).
 7. Sesuaikan DB_* di file `.env` bila perlu.
 8. `php artisan migrate --seed`
 9. `php artisan serve`, lalu buka http://127.0.0.1:8000
