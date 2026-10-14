@@ -22,7 +22,7 @@
       --bs-body-color-rgb: 74, 83, 107;
       --bs-secondary-color: var(--warna-teks-pendukung);
       --bs-link-color: var(--warna-navbar);
-      --bs-link-hover-color: var(--warna-teks-tombol);
+      --bs-link-hover-color: var(--warna-tombol-gelap);
     }
 
     body { background: var(--warna-background); }
@@ -76,9 +76,11 @@
 </head>
 <body>
 
+@php $p = auth()->user()->isAdmin() ? '' : 'user.'; @endphp
+
 <nav class="navbar navbar-expand-lg navbar-dark mb-4">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="{{ route('dashboard') }}">Data Sertifikasi</a>
+    <a class="navbar-brand fw-bold" href="{{ route($p.'dashboard') }}">Data Sertifikasi</a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuUtama">
       <span class="navbar-toggler-icon"></span>
@@ -87,20 +89,23 @@
     <div class="collapse navbar-collapse" id="menuUtama">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}"
-             href="{{ route('dashboard') }}">Dashboard</a>
+          <a class="nav-link {{ request()->routeIs($p.'dashboard') ? 'active' : '' }}"
+             href="{{ route($p.'dashboard') }}">Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ request()->routeIs('peserta.*') ? 'active' : '' }}"
-             href="{{ route('peserta.index') }}">Data Peserta</a>
+          <a class="nav-link {{ request()->routeIs($p.'peserta.*') ? 'active' : '' }}"
+             href="{{ route($p.'peserta.index') }}">Data Peserta</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ request()->routeIs('skema.*') ? 'active' : '' }}"
-             href="{{ route('skema.index') }}">Skema</a>
+          <a class="nav-link {{ request()->routeIs($p.'skema.*') ? 'active' : '' }}"
+             href="{{ route($p.'skema.index') }}">Skema</a>
         </li>
       </ul>
 
-      <span class="text-white small me-3">{{ auth()->user()->name }}</span>
+      <span class="text-white small me-3">
+        {{ auth()->user()->name }}
+        <span class="badge text-bg-light ms-1">{{ auth()->user()->isAdmin() ? 'Admin' : 'User' }}</span>
+      </span>
       <form action="{{ route('logout') }}" method="post" class="d-inline">
         @csrf
         <button class="btn btn-sm btn-outline-light">Logout</button>

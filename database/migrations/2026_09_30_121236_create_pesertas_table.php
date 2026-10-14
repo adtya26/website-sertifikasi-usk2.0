@@ -16,7 +16,7 @@ return new class extends Migration
         $table->char('nik', 16)->unique();
         $table->string('nama', 100);
         $table->string('email', 100);
-        $table->string('no_hp', 20);
+        $table->string('no_hp', 13);
         $table->text('alamat');
         $table->date('tanggal_lahir');
         $table->foreignId('skema_id')

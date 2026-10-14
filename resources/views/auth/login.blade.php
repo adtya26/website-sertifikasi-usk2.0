@@ -66,6 +66,13 @@
         </div>
         <button class="btn btn-primary w-100">Masuk</button>
       </form>
+
+      <p class="text-center small mt-3 mb-0">
+        Belum punya akun? <a href="{{ route('register') }}">Daftar</a>
+      </p>
+      <p class="text-center small mt-2 mb-0">
+        <a href="{{ route('welcome') }}" class="text-muted">Kembali ke beranda</a>
+      </p>
     </div>
   </div>
 </div>

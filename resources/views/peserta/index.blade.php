@@ -4,7 +4,9 @@
 @section('content')
 <div class="d-flex justify-content-between mb-3">
   <h3>Data Peserta</h3>
-  <a href="{{ route('peserta.create') }}" class="btn btn-primary">+ Tambah Peserta</a>
+  @if (auth()->user()->isAdmin())
+    <a href="{{ route('peserta.create') }}" class="btn btn-primary">+ Tambah Peserta</a>
+  @endif
 </div>
 
 <form method="get" class="row g-2 mb-3">
@@ -13,7 +15,7 @@
            placeholder="Cari nama / NIK / email / skema">
   </div>
   <div class="col-auto">
-    <button class="btn btn-success">Cari</button>
+    <button class="btn btn-primary">Cari</button>
     <a href="{{ route('peserta.index') }}" class="btn btn-outline-secondary">Reset</a>
   </div>
 </form>
@@ -21,7 +23,7 @@
 <div class="card"><div class="table-responsive">
 <table class="table table-striped mb-0">
   <thead>
-    <tr><th>#</th><th>NIK</th><th>Nama</th><th>Email</th><th>Skema</th><th width="220">Aksi</th></tr>
+    <tr><th>#</th><th>NIK</th><th>Nama</th><th>Email</th><th>Skema</th><th>Aksi</th></tr>
   </thead>
   <tbody>
     @forelse ($pesertas as $p)
@@ -33,12 +35,14 @@
         <td>{{ $p->skema?->nama_skema ?? '-' }}</td>
         <td>
           <a href="{{ route('peserta.show', $p) }}" class="btn btn-sm btn-info">Detail</a>
-          <a href="{{ route('peserta.edit', $p) }}" class="btn btn-sm btn-warning">Ubah</a>
-          <form action="{{ route('peserta.destroy', $p) }}" method="post" class="d-inline"
-                onsubmit="return confirm('Yakin hapus data peserta ini?')">
-            @csrf @method('DELETE')
-            <button class="btn btn-sm btn-danger">Hapus</button>
-          </form>
+          @if (auth()->user()->isAdmin())
+            <a href="{{ route('peserta.edit', $p) }}" class="btn btn-sm btn-warning">Ubah</a>
+            <form action="{{ route('peserta.destroy', $p) }}" method="post" class="d-inline"
+                  onsubmit="return confirm('Yakin hapus data peserta ini?')">
+              @csrf @method('DELETE')
+              <button class="btn btn-sm btn-danger">Hapus</button>
+            </form>
+          @endif
         </td>
       </tr>
     @empty

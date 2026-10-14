@@ -38,7 +38,7 @@ class PesertaRequest extends FormRequest
             'email.required' => 'Email wajib diisi.',
             'email.email' => 'Format email tidak valid.',
             'no_hp.required' => 'No. HP wajib diisi.',
-            'no_hp.regex' => 'No. HP tidak valid (9-20 digit angka).',
+            'no_hp.regex' => 'No. HP tidak valid (12-13 digit angka).',
             'alamat.required' => 'Alamat wajib diisi.',
             'tanggal_lahir.required' => 'Tanggal lahir wajib diisi.',
             'tanggal_lahir.date' => 'Tanggal lahir tidak valid.',

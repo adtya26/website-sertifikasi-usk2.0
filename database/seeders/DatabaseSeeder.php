@@ -11,10 +11,18 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        User::create([
+        User::forceCreate([
             'name' => 'Administrator',
             'email' => 'admin@example.com',
             'password' => Hash::make('admin123'),
+            'role' => 'admin',
+        ]);
+
+        User::forceCreate([
+            'name' => 'Pengguna',
+            'email' => 'user@example.com',
+            'password' => Hash::make('user123'),
+            'role' => 'user',
         ]);
 
         $skema = [
